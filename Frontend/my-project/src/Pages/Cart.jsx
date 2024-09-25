@@ -4,7 +4,7 @@ import { decreaseQuantity, increaseQuantity, removeFromcart} from "../Redux/Cart
 import toast, { Toaster } from 'react-hot-toast';
 
 const Cart = () => {
-  const cart = useSelector(state=> state.cart.carts);
+  const cart = useSelector(state=> state.cart);
   const dispatch=useDispatch();
   console.log(cart.length)
   const handleRemove=(id)=>{
@@ -31,12 +31,12 @@ const Cart = () => {
     <div>
       
      { 
-     cart.length>0?
+     cart.carts.length>0?
         <div className="container mx-auto  items-center px-4  md:px-16 lg:px-24 py-4 gap-4">
           <h1 className="text-2xl font-extrabold text-gray-800">Your Cart</h1>
           <div className="grid md:grid-cols-3 gap-4 mt-8">
             <div className="md:col-span-2 space-y-4">
-              {cart.map((product) => {
+              {cart.carts.map((product) => {
                
                 return (
                   <div className="flex gap-4 bg-white px-4 py-4 rounded-md  border-2">
@@ -137,16 +137,12 @@ const Cart = () => {
                 );
               })}
             </div>
-         {
-          cart.map((product)=>{
-            return 
-          })
-         }
+       
 
             <div className="bg-white rounded-md px-4 py-4 h-max border-2">
               <ul className="text-gray-800 space-y-4">
                 <li className="flex flex-wrap gap-4 text-sm">
-                  Subtotal <span className="ml-auto font-bold">$200</span>
+                  Subtotal <span className="ml-auto font-bold">${cart.totalprice}</span>
                 </li>
                 <li className="flex flex-wrap gap-4 text-sm">
                   Shipping <span className="ml-auto font-bold">$2.00</span>
